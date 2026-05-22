@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Flow Salon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome para os ícones do Zap e Lixeira da Aba Clientes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>Flow<span class="texto-neon">Salon</span></h2>
+      </div>
+      <nav class="menu-list">
+        <a href="#" class="menu-item active" data-target="resumo"><img src="img/painel.png" alt="" class="menu-icon"> Dashboard</a>
+        <a href="#" class="menu-item" data-target="agenda"><img src="img/cronograma.png" alt="" class="menu-icon"> Agendamentos</a>
+        <a href="#" class="menu-item" data-target="clientes"><img src="img/adicionar-usuario.png" alt="" class="menu-icon"> Clientes</a>
+        <a href="#" class="menu-item" data-target="servicos"><img src="img/configuracoes.png" alt="" class="menu-icon"> Serviços</a>
+        <a href="#" class="menu-item" data-target="profissionais"><img src="img/servicos-profissionais.png" alt="" class="menu-icon"> Profissionais</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn-logout" id="btn-sair">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <div class="welcome-text">
+          <h1>Olá, <span class="texto-neon" id="boas-vindas-nome">Administrador</span></h1>
+          <p>Visão geral da empresa em tempo real.</p>
+        </div>
+        <button class="cta-button" id="btn-novo">+ Novo Agendamento</button>
+      </header>
+
+      <!-- ABA 1: RESUMO -->
+      <section id="resumo" class="content-section active">
+        <div class="stats-grid">
+          <div class="card"><h3>Total de Clientes</h3><span class="value" id="count-clientes">142</span></div>
+          <div class="card"><h3>Agendamentos Hoje</h3><span class="value gradient" id="count-agendamentos">8</span></div>
+          <div class="card"><h3>Serviço Mais Procurado</h3><span class="value" style="font-size: 24px;">Corte Masculino</span></div>
+        </div>
+        <div class="table-section">
+          <div class="table-header"><h3>Próximos Clientes</h3></div>
+          <table id="tabela-atendimento">
+            <thead><tr><th>Horário</th><th>Cliente</th><th>Serviço</th><th>Status</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ABA 2: AGENDA MESTRA -->
+      <section id="agenda" class="content-section">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2>Agenda <span class="texto-neon">Mestra</span></h2>
+          <div class="agenda-controls" style="display: flex; gap: 15px;">
+              <input type="date" id="data-agenda" class="input-dark">
+              <button class="cta-button" id="btn-abrir-modal">+ Novo Agendamento</button>
+          </div>
+        </div>
+        <div class="agenda-timeline" id="agenda-lista"></div>
+      </section>
+
+      <!-- ABA 3: GESTÃO DE CLIENTES (ZAP E BUSCA)    -->
+      <section id="clientes" class="content-section">
+        <div class="section-header">
+          <h2>Gestão de <span class="texto-neon">Clientes</span></h2>
+        </div>
+
+        <div class="form-container" style="background: #0b0c10; padding: 25px; border-radius: 12px; border: 1px solid #1f2029; margin-bottom: 40px;">
+          <form id="formCliente" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Nome do Cliente</label>
+              <input type="text" id="cliente-nome" class="input-dark" required placeholder="Ex: Maria Silva" style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">WhatsApp / Telefone</label>
+              <input type="text" id="cliente-telefone" class="input-dark" required placeholder="(11) 99999-9999" style="width: 100%;">
+            </div>
+            <div class="campo" style="grid-column: 1 / -1; margin-top: 10px;">
+              <button type="submit" class="cta-button" style="width: 100%;"><i class="fas fa-save"></i> Salvar na Agenda</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section-header">
+          <h3>Carteira de Clientes</h3>
+          <input type="text" id="busca-cliente" placeholder="Buscar cliente..." class="input-dark search-bar">
+        </div>
+        <div class="cards-grid" id="listaClientesApp"></div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- ABA 4: CATÁLOGO DE SERVIÇOS                -->
+      <!-- ========================================== -->
+      <section id="servicos" class="content-section">
+        <div class="section-header">
+          <h2>Catálogo de <span class="texto-neon">Serviços</span></h2>
+        </div>
+
+        <div class="form-container" style="background: #0b0c10; padding: 25px; border-radius: 12px; border: 1px solid #1f2029; margin-bottom: 40px;">
+          <form id="formServico" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: end;">
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Nome do Serviço</label>
+              <input type="text" id="servico-nome" class="input-dark" required placeholder="Ex: Corte Degradê" style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Preço (R$)</label>
+              <input type="number" id="servico-preco" class="input-dark" required placeholder="Ex: 45.00" step="0.01" style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Categoria</label>
+              <select id="servico-tipo" class="input-dark" required style="width: 100%;">
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+              </select>
+            </div>
+            <div class="campo" style="grid-column: 1 / -1; margin-top: 10px;">
+              <button type="submit" class="cta-button" style="width: 100%;">Adicionar Serviço</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section-header" style="justify-content: center; gap: 20px; margin-bottom: 30px;">
+            <button id="btn-cat-masc" class="btn-outline" style="padding: 10px 40px; font-size: 1.1rem;">Masculino</button>
+            <button id="btn-cat-fem" class="btn-outline" style="padding: 10px 40px; font-size: 1.1rem;">Feminino</button>
+        </div>
+        <div class="cards-grid" id="listaServicos"></div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- ABA 5: GESTÃO DE PROFISSIONAIS             -->
+      <!-- ========================================== -->
+      <section id="profissionais" class="content-section">
+        <div class="section-header">
+          <h2>Gestão de <span class="texto-neon">Profissionais</span></h2>
+        </div>
+
+        <div class="form-container" style="background: #0b0c10; padding: 25px; border-radius: 12px; border: 1px solid #1f2029; margin-bottom: 40px;">
+          <form id="formProfissional" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Nome Completo</label>
+              <input type="text" id="prof-nome" class="input-dark" required style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">CPF</label>
+              <input type="text" id="prof-cpf" class="input-dark" required placeholder="000.000.000-00" style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">E-mail</label>
+              <input type="email" id="prof-email" class="input-dark" required style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Telefone</label>
+              <input type="text" id="prof-telefone" class="input-dark" required placeholder="+55 11 90000-0000" style="width: 100%;">
+            </div>
+            <div class="campo">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Especialidade</label>
+              <select id="prof-especialidade" class="input-dark" required style="width: 100%;">
+                <option value="" disabled selected>Selecione...</option>
+                <option value="Cabeleireiro(a)">Cabeleireiro(a)</option>
+                <option value="Barbeiro Visagista">Barbeiro Visagista</option>
+                <option value="Barbeiro">Barbeiro</option>
+                <option value="Manicure e Pedicure">Manicure e Pedicure</option>
+                <option value="Lash Designer">Lash Designer (Cílios)</option>
+                <option value="Designer de Sobrancelhas">Designer de Sobrancelhas</option>
+                <option value="Nail Designer">Nail Designer</option>
+                <option value="Outra">Outra (digitar...)</option>
+              </select>
+            </div>
+            <div id="campo-outra-profissao" class="campo" style="display: none;">
+              <label style="color: #888; font-size: 0.9rem; display: block; margin-bottom: 5px;">Qual a outra profissão?</label>
+              <input type="text" id="prof-outra" class="input-dark" style="width: 100%;">
+            </div>
+            <div class="campo" style="grid-column: 1 / -1; margin-top: 10px;">
+              <button type="submit" class="cta-button" style="width: 100%;">Salvar Funcionário</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section-header">
+          <h3>Equipe Cadastrada</h3>
+        </div>
+        <div class="cards-grid" id="listaFuncionarios"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL DE AGENDAMENTO (Oculto por padrão) -->
+  <div id="modal-agendamento" class="modal-overlay">
+      <div class="modal-content">
+          <h2>Novo <span class="texto-neon">Agendamento</span></h2>
+          <form id="form-agendamento">
+              <div class="campo">
+                  <label>Horário</label>
+                  <select id="novo-hora" class="input-dark" required style="width: 100%; padding: 10px; margin-top: 5px;">
+                      <option value="08:00">08:00</option>
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                      <option value="16:00">16:00</option>
+                      <option value="17:00">17:00</option>
+                  </select>
+              </div>
+              <div class="campo" style="margin-top: 15px;">
+                  <label>Nome do Cliente</label>
+                  <input type="text" id="novo-cliente" class="input-dark" required placeholder="Ex: Ana Silva" style="width: 100%; padding: 10px; margin-top: 5px;">
+              </div>
+              <div class="campo" style="margin-top: 15px;">
+                  <label>Serviço</label>
+                  <input type="text" id="novo-servico" class="input-dark" required placeholder="Ex: Corte e Hidratação" style="width: 100%; padding: 10px; margin-top: 5px;">
+              </div>
+              <div class="campo" style="margin-top: 15px;">
+                  <label>Profissional</label>
+                  <input type="text" id="novo-profissional" class="input-dark" required placeholder="Ex: Carlos" style="width: 100%; padding: 10px; margin-top: 5px;">
+              </div>
+              <div class="modal-buttons" style="display: flex; justify-content: space-between; margin-top: 25px;">
+                  <button type="button" id="btn-fechar-modal" class="btn-outline">Cancelar</button>
+                  <button type="submit" class="cta-button">Salvar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

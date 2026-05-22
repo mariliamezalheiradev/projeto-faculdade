@@ -1,0 +1,298 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  color: white;
+  background: black;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.nav-box {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0,255,136,0.2);
+}
+
+.btn {
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #ccc;
+}
+
+.btn.outline {
+  border: 1px solid #00ff88;
+  background: transparent;
+  color: #00ff88;
+}
+
+.btn.primary {
+  background: linear-gradient(45deg, #00ff88, #00cfff);
+  color: black;
+  font-weight: bold;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #00ff88,
+              0 0 20px #00ff88;
+}
+
+.btn.primary:hover {
+  box-shadow: 0 0 15px #00ff88,
+              0 0 40px #00cfff;
+}
+
+
+.background {
+  position: fixed;
+  top: 0;        
+  left: 0;       
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.background img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: 2s;
+}
+
+.background img.active {
+  opacity: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;        
+  left: 0;       
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 56px;
+}
+
+.hero span {
+  background: linear-gradient(45deg, #00ff88, #00cfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* BOTÕES */
+button, .cta {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(45deg, #00ff88, #00cfff);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color: black; /* FIX (texto invisível sem isso) */
+}
+
+/* brilho */
+button:hover, .cta:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 10px #00ff88,
+    0 0 25px #00ff88,
+    0 0 50px #00cfff;
+}
+
+
+button::before, .cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.6s;
+}
+
+button:hover::before, .cta:hover::before {
+  left: 120%;
+}
+
+/* MOTIVOS */
+.motivos-section {
+  padding: 120px 40px;
+  background: #0a0a0a;
+}
+
+.titulo {
+  text-align: center;
+  color: #00ff88;
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* IMAGEM */
+.imagem-box {
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.imagem-box::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  background: linear-gradient(45deg, #00ff88, #00cfff);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+.imagem-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* LISTA */
+.motivos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 450px;
+}
+
+.motivo {
+  padding: 15px 20px;
+  border-left: 3px solid #00ff88;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+
+  opacity: 0;
+  transform: translateX(100px);
+  transition: 0.6s ease;
+}
+
+.motivo:nth-child(even) {
+  transform: translateX(-100px);
+}
+
+.motivo.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.motivo h3 {
+  color: #00ff88;
+}
+
+.motivo p {
+  color: #ccc;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .hero {
+    padding-left: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .imagem-box {
+    width: 100%;
+    height: 250px;
+  }
+}
+.final{
+  padding:100px 40px;
+  text-align:center;
+}
+
+.final span{
+  color:#00ff88;
+}
+
+/* css/home.css - Estilo do Rodapé */
+.rodape-equipe {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid #1f2029;
+  position: relative;
+  z-index: 10;
+}
+
+.rodape-equipe p {
+  color: #888;
+  font-size: 1rem;
+}
+
+.link-neon {
+  color: #00ff88;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.link-neon:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+  letter-spacing: 1px;
+}

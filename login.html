@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso do Administrador</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <main>
+        <!-- Card do formulário -->
+        <div class="loguin-form">
+            <header>
+                <h1 id="login-title">Acesso do Administrador</h1>
+                <p>Portal de entrada ao painel administrativo do salão.</p>
+            </header>
+            
+            <!-- Formulário de login -->
+            <form>
+                <fieldset>
+                    <label for="email">
+                        E-mail
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </label>
+                    <span id="email-error" class="erro"></span>
+                    <label for="senha">
+                        Senha
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required minlength="8">
+                    </label>
+                    <span id="senha-error" class="erro"></span>
+                </fieldset>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </main>
+    <script src="js/core.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

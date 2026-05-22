@@ -1,0 +1,224 @@
+/* css/agendamento.css - VERSÃO DARK NEON (Padrão FlowSalon) */
+
+body {
+    background-color: #050505;
+    color: #f5f9ff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Fundo da caixa bem escuro, como no Cadastro do Salão */
+#formContainer, .confirmation-screen {
+    background: #111111; 
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* LOGO */
+.logo {
+    width: 100%;
+    max-width: 150px; 
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,255,136,0.2);
+}
+
+/* Caixa de aviso discreta com borda verde */
+.info-box {
+    background: transparent;
+    color: #00ff88;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid #00ff88;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Labels em Verde Neon como na tela de Cadastro */
+label {
+    color: #00ff88;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.required {
+    color: #ff4b4b;
+}
+
+/* Inputs com fundo quase preto e BORDAS VERDES */
+input:not([type="radio"]), select, textarea {
+    background-color: #0a0a0a;
+    border: 1px solid #00ff88; /* Borda Neon padrão FlowSalon */
+    border-radius: 8px; /* Cantos menos arredondados, igual o cadastro */
+    padding: 14px;
+    color: #ccc;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:not([type="radio"]):focus, select:focus, textarea:focus {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+    background-color: #111;
+}
+
+.cep-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botão de buscar CEP */
+.btn-buscar {
+    background: transparent;
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    padding: 0 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-buscar:hover {
+    background: #00ff88;
+    color: #000;
+}
+
+/* Serviços */
+.services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background: transparent;
+    padding: 10px 0;
+}
+
+.service-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #ccc;
+    cursor: pointer;
+    margin: 0;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #00ff88;
+    transform: scale(1.2);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Botão Principal Sólido Verde Neon */
+.btn-submit {
+    flex: 2;
+    background: #00ff88;
+    color: #000;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Botão Limpar com borda vermelha */
+.btn-reset {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #ff4b4b;
+    color: #ff4b4b;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-reset:hover {
+    background: #ff4b4b;
+    color: #fff;
+}
+
+.confirmation-screen {
+    text-align: center;
+}
+
+.success-icon-big {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.appointment-details {
+    background: #0a0a0a;
+    border: 1px solid #00ff88;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    margin: 20px 0;
+}
+
+.appointment-details p {
+    margin: 8px 0;
+    color: #ccc;
+}
+
+.whatsapp-btn {
+    display: block;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 15px;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .form-row { flex-direction: column; gap: 0; }
+    .services { grid-template-columns: 1fr; }
+}
