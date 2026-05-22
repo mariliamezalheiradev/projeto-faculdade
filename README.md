@@ -73,4 +73,4 @@ FlowSalon/
 │
 └── img/
 
-<p align="center"> Desenvolvido com 💚 pela equipe FlowSalon </p> ```
+<p align="center"> Desenvolvido com 💚 pela equipe FlowSalon </p>
