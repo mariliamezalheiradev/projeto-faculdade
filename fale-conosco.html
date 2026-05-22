@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco | FlowSalon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/fale-conosco.css">
+</head>
+<body>
+
+    <a href="index.html" class="btn-voltar">⬅ Voltar para a Home</a>
+
+    <div class="contato-container">
+        
+        <header class="contato-header">
+            <h1>FALE <span class="texto-neon">CONOSCO</span></h1>
+            <p>Ficou com alguma dúvida? Nossa equipe está pronta para te ajudar.</p>
+        </header>
+
+        <main class="contato-content">
+            
+            <div class="contato-info">
+                <h3>Informações de <span class="texto-neon">Contato</span></h3>
+                <p style="color: #aaa; margin-bottom: 30px; font-size: 0.9rem;">Escolha o melhor canal para falar com o FlowSalon.</p>
+
+                <div class="info-item">
+                    <div class="icone"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="icone"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>E-mail</h4>
+                        <p>suporte@flowsalon.com.br</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="icone"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Endereço</h4>
+                        <p>Av. Paulista, 1000 - São Paulo, SP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contato-form-box">
+                <form id="form-contato">
+                    <div class="campo">
+                        <label>Seu Nome</label>
+                        <input type="text" id="contato-nome" class="input-dark" required placeholder="Como podemos te chamar?">
+                    </div>
+
+                    <div class="campo">
+                        <label>Seu E-mail</label>
+                        <input type="email" id="contato-email" class="input-dark" required placeholder="para te respondermos">
+                    </div>
+
+                    <div class="campo">
+                        <label>Assunto</label>
+                        <select id="contato-assunto" class="input-dark" required>
+                            <option value="" disabled selected>Sobre o que quer falar?</option>
+                            <option value="Dúvida">Dúvida sobre Agendamento</option>
+                            <option value="Suporte">Problema Técnico</option>
+                            <option value="Elogio">Elogio / Sugestão</option>
+                            <option value="Outro">Outro Assunto</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Mensagem</label>
+                        <textarea id="contato-mensagem" class="input-dark" rows="4" required placeholder="Digite sua mensagem detalhada aqui..."></textarea>
+                    </div>
+
+                    <button type="submit" class="cta-button btn-full">Enviar Mensagem</button>
+                </form>
+
+                <div id="mensagem-sucesso-contato" style="display: none; text-align: center; padding: 20px;">
+                    <div style="font-size: 50px; margin-bottom: 15px; color: #00ff88;"><i class="fas fa-check-circle"></i></div>
+                    <h2 style="color: #00ff88;">Mensagem Enviada!</h2>
+                    <p style="color: #ccc; margin-top: 10px;">Recebemos sua solicitação e responderemos em até 24 horas.</p>
+                    <button onclick="window.location.reload()" class="btn-outline" style="margin-top: 20px; width: 100%;">Enviar outra mensagem</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/core.js"></script>
+    <script src="js/contato.js"></script>
+</body>
+</html>
